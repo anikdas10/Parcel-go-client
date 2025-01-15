@@ -1,14 +1,17 @@
-import NavBar from "@/assets/Shared/NavBar";
+import NavBar from "@/Shared/NavBar";
+import Container from "@/components/Container/Container";
+
 import { Outlet } from "react-router-dom";
 
 
 const MainLayout = () => {
     return (
-        <div>
-            <NavBar/>
-            <h2>Main layout</h2>
-            <Outlet/>
-        </div>
+      <div>
+        <NavBar />
+        <Container>
+          <Outlet />
+        </Container>
+      </div>
     );
 };
 
