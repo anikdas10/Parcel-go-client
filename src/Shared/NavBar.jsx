@@ -39,7 +39,7 @@ const NavBar = () => {
                         alt=""
                       />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-32">
+                    <DropdownMenuContent className="w-40">
                       <DropdownMenuLabel>
                         <h2 className="font-bold text-lg">
                           {user?.displayName}

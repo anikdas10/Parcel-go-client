@@ -1,18 +1,28 @@
 import useAuth from "@/Hooks/useAuth";
+import UseAxiosPublic from "@/Hooks/UseAxiosPublic";
 
 
 const LoginWithGoogle = () => {
   const { user, handleGoogleLogin } = useAuth();
+  const axiosPublic = UseAxiosPublic();
   const handleLogin = async ()=>{
     try{
-      const data = await handleGoogleLogin();
-      console.log(data);
+      const {user} = await handleGoogleLogin();
+      
+      const userInfo = {
+        name:user.displayName,
+        email:user.email,
+        image:user.photoURL,
+        role:"User"
+      }
+      const {data} = await axiosPublic.post("/users",userInfo)
+      
     }
     catch(err){
       console.log(err);
     }
   }
-  console.log(user);
+  
     return (
       <div onClick={handleLogin}>
         <button

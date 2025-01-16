@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import LoginWithGoogle from "./LoginWithGoogle/LoginWithGoogle";
 import { imageUpload } from "@/components/api/utilies";
 import useAuth from "@/Hooks/UseAuth";
+import UseAxiosPublic from "@/Hooks/UseAxiosPublic";
+import { Store } from "react-notifications-component";
 
 
 const SignUp = () => {
   const {createUser,updateUser,setUser} = useAuth();
+  const axiosPublic = UseAxiosPublic();
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const form = e.target;
@@ -19,12 +22,36 @@ const SignUp = () => {
     // image link form the imageBB
     const photoUrl = await imageUpload(imageFiles);
 
+    const userInfo = {
+      name,
+      email,
+      role,
+      image:photoUrl
+    }
     // create user
     try{
       const {user} = await createUser(email,password)
       // update user
       await updateUser(name, photoUrl);
       setUser({ ...user, displayName: name ,photoURL:photoUrl});
+
+      // notification  message
+      Store.addNotification({
+        
+        message: "Sign Up Successful!!",
+        type: "success",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500,
+          onScreen: true,
+        },
+      });
+      // save the data (mongodb)
+     const {data} =  await axiosPublic.post("/users",userInfo)
+     console.log(data);
     }
     catch(err){
       console.log(err);

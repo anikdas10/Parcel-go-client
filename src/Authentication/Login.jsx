@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import LoginWithGoogle from "./LoginWithGoogle/LoginWithGoogle";
 import useAuth from "@/Hooks/UseAuth";
+import { Store } from "react-notifications-component";
 
 
 const Login = () => {
@@ -12,7 +13,18 @@ const Login = () => {
     const password= form.password.value;
 
     try{
-      const result = await signIn(email,password)
+      const result = await signIn(email,password);
+      Store.addNotification({
+        message: "Login SuccessFull!",
+        type: "success",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1500,
+          onScreen: true,
+        },
+      });
     }
     catch(err){
       console.log(err);
@@ -69,13 +81,13 @@ const Login = () => {
           </div>
           <div>
             <p className="text-xs md:text-sm  lg:text-lg text-center sm:px-6 dark:text-gray-600">
-              Already have an account?
+              Don't have an account?
               <Link
-                to="/login"
+                to="/signUp"
                 rel="noopener noreferrer"
                 className="underline dark:text-gray-800 "
               >
-                Login
+                signUp
               </Link>
             </p>
           </div>
