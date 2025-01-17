@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import BookParcel from "@/Pages/BookParcel/BookParcel";
 import MyParcel from "@/Pages/MyParcel/MyParcel";
 import UpdateParcel from "@/Pages/UpdateParcel/UpdateParcel";
+import Profile from "@/Shared/Profile/Profile";
 
 
 const router = createBrowserRouter([
@@ -53,7 +54,14 @@ const router = createBrowserRouter([
       {
         path: ":id",
         element: <UpdateParcel />,
-        
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
     ],
   },

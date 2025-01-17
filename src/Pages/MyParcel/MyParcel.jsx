@@ -1,16 +1,14 @@
-import useAuth from "@/Hooks/UseAuth";
+
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
-import UseUser from "@/Hooks/UseUser";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import UseParcels from "@/Hooks/UseParcels";
+
 import { Store } from "react-notifications-component";
 import { Link } from "react-router-dom";
 
 
 const MyParcel = () => {
     const axiosSecure = UseAxiosSecure();
-    const [parcels,refetch] = UseUser();
-
+    const [parcels,refetch] = UseParcels();
    console.log(parcels);
 
    const handleCancel =async id =>{

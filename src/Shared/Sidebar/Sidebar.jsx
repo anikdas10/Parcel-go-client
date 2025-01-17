@@ -11,11 +11,11 @@ import { IoLogoBuffer, IoMdBookmarks } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlineDashboard } from "react-icons/md";
 
-import UseAxiosPublic from "@/Hooks/UseAxiosPublic";
 import useAuth from "@/Hooks/UseAuth";
 import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
+import UseUser from "@/Hooks/UseUser";
 
 const menuItems = [
   {
@@ -57,21 +57,15 @@ const userItems = [
   {
     icons: <FaUserCircle size={30} />,
     label: "MyProfile",
+    link: "/dashboard/profile",
   },
 ];
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const { user } = useAuth();
-  const axiosSecure = UseAxiosSecure();
-  const { data: userData } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/users/${user.email}`);
-      return data;
-    },
-  });
-  console.log(userData?.role);
+  const [userData] = UseUser();
+
   return (
     <div
       className={`shadow-md h-screen p-2 absolute z-50 flex flex-col duration-500 md:static bg-blue-600 text-white  ${
