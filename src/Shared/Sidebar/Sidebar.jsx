@@ -52,6 +52,7 @@ const userItems = [
   {
     icons: <IoMdBookmarks size={30} />,
     label: "MyParcels",
+    link: "/dashboard/myParcel",
   },
   {
     icons: <FaUserCircle size={30} />,

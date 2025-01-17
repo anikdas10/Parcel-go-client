@@ -42,6 +42,8 @@ const BookParcel = () => {
     const onsubmit = async(formData) => {
       console.log(formData);
       formData.status = "pending";
+      formData.bookingDate = new Date().toISOString().split("T")[0];
+      
       
     //   save the data to the database
      try{
@@ -66,7 +68,7 @@ const BookParcel = () => {
         console.log(err);
      }
     };
-    
+    console.log(new Date().toISOString().split("T")[0]);
     return (
       <div className="pt-10">
         <h2 className="font-bold text-xl md:text-2xl lg:text-3xl text-center mb-5">

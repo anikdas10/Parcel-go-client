@@ -6,8 +6,8 @@ const LoadingSpinner = () => {
       <div className="flex items-center justify-center h-screen">
         <RotatingLines
           visible={true}
-          height="96"
-          width="96"
+          height="92"
+          width="92"
           color="grey"
           strokeWidth="5"
           animationDuration="0.75"

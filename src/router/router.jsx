@@ -7,6 +7,7 @@ import Dashboard from "@/Layouts/Dashboard/Dashboard"
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import BookParcel from "@/Pages/BookParcel/BookParcel";
+import MyParcel from "@/Pages/MyParcel/MyParcel";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             <BookParcel />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "myParcel",
+        element:<MyParcel/>
       },
     ],
   },
