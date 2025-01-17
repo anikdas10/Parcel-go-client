@@ -1,5 +1,5 @@
 import  { useState } from "react";
-
+import logo from "../../assets/images/logo.png"
 
 // icons
 import { MdMenuOpen } from "react-icons/md";
@@ -45,7 +45,16 @@ const menuItems = [
 const userItems = [
   {
     icons: <IoMdBookmarks size={30} />,
-    label: "Home",
+    label: "BookParcel",
+    link: "/dashboard/bookParcel",
+  },
+  {
+    icons: <IoMdBookmarks size={30} />,
+    label: "MyParcels",
+  },
+  {
+    icons: <FaUserCircle size={30} />,
+    label: "MyProfile",
   },
 ];
 
@@ -71,7 +80,7 @@ const Sidebar = () => {
       {/* Header */}
       <div className=" px-3 py-2 h-20 flex justify-between items-center">
         <img
-          src=""
+          src={logo}
           alt="Logo"
           className={`${open ? "w-10" : "w-0"} rounded-md`}
         />
@@ -110,7 +119,7 @@ const Sidebar = () => {
                          w-0 p-0 text-black bg-white duration-100 overflow-hidden group-hover:w-fit group-hover:p-2 group-hover:left-16
                         `}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
                   </p>
                 </NavLink>
               </li>
@@ -124,12 +133,12 @@ const Sidebar = () => {
                 className="px-3 py-2 my-2 hover:bg-blue-800 rounded- relative group"
               >
                 <NavLink
-                  to="/"
+                  to={item.link}
                   className="md duration-300 cursor-pointer flex gap-2 items-center"
                 >
                   <div>{item.icons}</div>
                   <p
-                    className={`${
+                    className={` ${
                       !open && "w-0 translate-x-24"
                     } duration-500 overflow-hidden`}
                   >
@@ -139,10 +148,11 @@ const Sidebar = () => {
                     className={`${
                       open && "hidden"
                     } absolute left-32 shadow-md rounded-md
-                         w-0 p-0 text-black bg-white duration-100 overflow-hidden group-hover:w-fit group-hover:p-2 group-hover:left-16
+                         w-0 p-0 text-black bg-white duration-100 overflow-hidden 
+                         group-hover:w-fit group-hover:p-2 group-hover:left-16
                         `}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
                   </p>
                 </NavLink>
               </li>
