@@ -1,23 +1,25 @@
 import useAuth from "@/Hooks/UseAuth";
+import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
 import { set } from "date-fns";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Store } from "react-notifications-component";
 
 
 const BookParcel = () => {
     const [price,setPrice] = useState(0);
-   
     const {user} = useAuth();
     const {
       register,
       formState: { errors },
       handleSubmit,
     } = useForm();
+    const axiosSecure = UseAxiosSecure();
     
     const handleParcelWeight = value =>{
-        console.log(value);
+        
      const parcelWeight = parseFloat(value) || 0;
-      console.log(parcelWeight);
+      
       if(parcelWeight===0)
       {
         setPrice(0)
@@ -38,13 +40,33 @@ const BookParcel = () => {
     }
     // form data
     const onsubmit = async(formData) => {
-      
+      console.log(formData);
       formData.status = "pending";
       
     //   save the data to the database
-     
+     try{
+        const {data} =await axiosSecure.post("/booking",formData)
+        
+        if (data.insertedId) {
+          Store.addNotification({
+            message: "Parcel booking Successful!!",
+            type: "success",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 1500,
+              onScreen: true,
+            },
+          });
+        }
+     }
+     catch(err){
+        console.log(err);
+     }
     };
-    console.log(price);
+    
     return (
       <div className="pt-10">
         <h2 className="font-bold text-xl md:text-2xl lg:text-3xl text-center mb-5">
@@ -181,11 +203,23 @@ const BookParcel = () => {
                     </label>
                     <input
                       className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
-                      {...register("deliveryDate", { required: true })}
+                      {...register("deliveryDate", {
+                        required: true,
+                        validate: {
+                          notPast: (value) =>
+                            new Date(value) >= new Date() ||
+                            "Please Enter a valid date!",
+                        },
+                      })}
                       id="deliveryDate"
                       type="date"
                       placeholder=" Requested Delivery Date"
                     />
+                    {errors.deliveryDate && (
+                      <p style={{ color: "red" }}>
+                        {errors.deliveryDate.message}
+                      </p>
+                    )}
                   </div>
                   {/* Parcel Type */}
                   <div className="space-y-1 text-sm">
@@ -216,7 +250,7 @@ const BookParcel = () => {
                       className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                       {...register("latitude", { required: true })}
                       id="latitude"
-                      type="number"
+                      type="text"
                       placeholder="Delivery Address Latitude"
                     />
                   </div>
@@ -233,7 +267,7 @@ const BookParcel = () => {
                       className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                       {...register("longitude", { required: true })}
                       id="longitude"
-                      type="number"
+                      type="text"
                       placeholder="Delivery Address Longitude"
                     />
                   </div>

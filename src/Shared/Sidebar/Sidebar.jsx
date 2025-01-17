@@ -15,6 +15,7 @@ import UseAxiosPublic from "@/Hooks/UseAxiosPublic";
 import useAuth from "@/Hooks/UseAuth";
 import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
+import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
 
 const menuItems = [
   {
@@ -61,12 +62,11 @@ const userItems = [
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const { user } = useAuth();
-  const axiosPublic = UseAxiosPublic();
-
+  const axiosSecure = UseAxiosSecure();
   const { data: userData } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/users/${user.email}`);
+      const { data } = await axiosSecure.get(`/users/${user.email}`);
       return data;
     },
   });
