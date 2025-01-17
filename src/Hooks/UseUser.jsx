@@ -9,14 +9,14 @@ const UseUser = () => {
     const {user} = useAuth();
     
    const axiosSecure = UseAxiosSecure();
-   const {data:userData,refetch} = useQuery({
-    queryKey:["user"],
+   const {data:parcels,refetch} = useQuery({
+    queryKey:[user?.email],
     queryFn:async()=>{
-        const {data} = await axiosSecure.get(`/users/${user.email}`);
+        const { data } = await axiosSecure.get(`/booking/${user.email}`);
         return data;
     }
    })
-   return [userData,refetch];
+   return [parcels,refetch];
 };
 
 export default UseUser;

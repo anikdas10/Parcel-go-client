@@ -8,6 +8,7 @@ import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import BookParcel from "@/Pages/BookParcel/BookParcel";
 import MyParcel from "@/Pages/MyParcel/MyParcel";
+import UpdateParcel from "@/Pages/UpdateParcel/UpdateParcel";
 
 
 const router = createBrowserRouter([
@@ -47,7 +48,12 @@ const router = createBrowserRouter([
       },
       {
         path: "myParcel",
-        element:<MyParcel/>
+        element: <MyParcel />,
+      },
+      {
+        path: ":id",
+        element: <UpdateParcel />,
+        
       },
     ],
   },
