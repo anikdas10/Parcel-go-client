@@ -42,6 +42,7 @@ const BookParcel = () => {
     const onsubmit = async(formData) => {
       console.log(formData);
       formData.status = "pending";
+      formData.price = price;
       formData.bookingDate = new Date().toISOString().split("T")[0];
       
       

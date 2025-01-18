@@ -1,6 +1,9 @@
 
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
 import UseParcels from "@/Hooks/UseParcels";
+
 
 import { Store } from "react-notifications-component";
 import { Link } from "react-router-dom";
@@ -8,9 +11,9 @@ import { Link } from "react-router-dom";
 
 const MyParcel = () => {
     const axiosSecure = UseAxiosSecure();
-    const [parcels,refetch] = UseParcels();
-   console.log(parcels);
-
+    const [parcels,isLoading,refetch] = UseParcels();
+//    useParcels
+    
    const handleCancel =async id =>{
     console.log(id);
     const updateInfo = {
@@ -39,6 +42,10 @@ const MyParcel = () => {
     catch(err){
         console.log(err);
     }
+   }
+   if(isLoading)
+   {
+    return <LoadingSpinner/>
    }
     return (
       <div className="pt-10 mx-auto">

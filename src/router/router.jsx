@@ -10,6 +10,7 @@ import BookParcel from "@/Pages/BookParcel/BookParcel";
 import MyParcel from "@/Pages/MyParcel/MyParcel";
 import UpdateParcel from "@/Pages/UpdateParcel/UpdateParcel";
 import Profile from "@/Shared/Profile/Profile";
+import AllParcels from "@/Pages/Admin/AllParcels/AllParcels";
 
 
 const router = createBrowserRouter([
@@ -63,6 +64,11 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // admin route
+      {
+        path:"allParcels",
+       element:<AllParcels/>
+      }
     ],
   },
 ]);

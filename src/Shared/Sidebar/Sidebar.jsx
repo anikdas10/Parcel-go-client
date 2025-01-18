@@ -2,9 +2,9 @@ import  { useState } from "react";
 import logo from "../../assets/images/logo.png"
 
 // icons
-import { MdMenuOpen } from "react-icons/md";
+import { MdAddBox, MdMenuOpen } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
-import { FaProductHunt } from "react-icons/fa";
+import { FaBox, FaChartLine, FaClipboardList, FaProductHunt, FaShippingFast, FaUsers } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { TbReportSearch } from "react-icons/tb";
 import { IoLogoBuffer, IoMdBookmarks } from "react-icons/io";
@@ -12,9 +12,9 @@ import { CiSettings } from "react-icons/ci";
 import { MdOutlineDashboard } from "react-icons/md";
 
 import useAuth from "@/Hooks/UseAuth";
-import { useQuery } from "@tanstack/react-query";
+
 import { NavLink } from "react-router-dom";
-import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
+
 import UseUser from "@/Hooks/UseUser";
 
 const menuItems = [
@@ -45,12 +45,12 @@ const menuItems = [
 ];
 const userItems = [
   {
-    icons: <IoMdBookmarks size={30} />,
+    icons: <MdAddBox size={30} />,
     label: "BookParcel",
     link: "/dashboard/bookParcel",
   },
   {
-    icons: <IoMdBookmarks size={30} />,
+    icons: <FaClipboardList size={30} />,
     label: "MyParcels",
     link: "/dashboard/myParcel",
   },
@@ -58,6 +58,29 @@ const userItems = [
     icons: <FaUserCircle size={30} />,
     label: "MyProfile",
     link: "/dashboard/profile",
+  },
+];
+
+const adminItem = [
+  {
+    icons: <FaBox size={30} />,
+    label: "AllParcels",
+    link: "/dashboard/allParcels",
+  },
+  {
+    icons: <FaUsers size={30} />,
+    label: "AllUsers",
+    link: "/dashboard/allUsers",
+  },
+  {
+    icons: <FaShippingFast size={30} />,
+    label: "AllDeliveryMen",
+    link: "/dashboard/allDeliveryMen",
+  },
+  {
+    icons: <FaChartLine size={30} />,
+    label: "Statistics",
+    link: "/dashboard/statistics",
   },
 ];
 
@@ -92,13 +115,13 @@ const Sidebar = () => {
 
       <ul className="flex-1">
         {userData?.role === "Admin" &&
-          menuItems.map((item, index) => {
+          adminItem.map((item, index) => {
             return (
               <li
                 key={index}
                 className="px-3 py-2 my-2 hover:bg-blue-800 rounded-md duration-300 cursor-pointer  relative group"
               >
-                <NavLink to="/" className="flex gap-2 items-center">
+                <NavLink to={item.link} className="flex gap-2 items-center">
                   <div>{item.icons}</div>
                   <p
                     className={`${
@@ -153,11 +176,35 @@ const Sidebar = () => {
               </li>
             );
           })}
+        <div className="border"></div>
+        <li className="px-3 py-2 my-2 hover:bg-blue-800 rounded-md duration-300 cursor-pointer  relative group">
+          <NavLink to="/" className="flex gap-2 items-center">
+            <div>
+              <IoHomeOutline size={30} />
+            </div>
+            <p
+              className={`${
+                !open && "w-0 translate-x-24"
+              } duration-500 overflow-hidden`}
+            >
+              Home
+            </p>
+            <p
+              className={`${
+                open && "hidden"
+              } absolute left-32 shadow-md rounded-md
+                         w-0 p-0 text-black bg-white duration-100 overflow-hidden group-hover:w-fit group-hover:p-2 group-hover:left-16
+                        `}
+            >
+              <span>Home</span>
+            </p>
+          </NavLink>
+        </li>
       </ul>
       {/* footer */}
-      <div className="flex items-center gap-2 px-3 py-2">
+      <div className="flex items-center gap-2 py-2">
         <div className="">
-          <img src={user?.photoURL} className="full h-10 rounded-full" alt="" />
+          <img src={user?.photoURL} className="w-10 h-10 rounded-full" alt="" />
         </div>
         <div
           className={`leading-5 ${

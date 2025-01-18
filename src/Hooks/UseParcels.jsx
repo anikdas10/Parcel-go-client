@@ -6,15 +6,16 @@ import UseAxiosSecure from "./UseAxiosSecure";
 
 const UseParcels = () => {
     const {user} = useAuth();
+    console.log(user.email);
    const axiosSecure = UseAxiosSecure();
-   const {data:parcels,refetch} = useQuery({
+  const {data:parcels,isLoading,refetch} = useQuery({
     queryKey:[user?.email],
     queryFn:async()=>{
-        const { data } = await axiosSecure.get(`/booking/${user.email}`);
-        return data;
+        const res = await axiosSecure.get(`/booking/${user?.email}`);
+        return res.data
     }
-   })
-   return [parcels,refetch];
+  })
+   return [parcels,isLoading,refetch];
 };
 
 export default UseParcels;
