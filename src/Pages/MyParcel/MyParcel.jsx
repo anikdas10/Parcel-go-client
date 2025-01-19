@@ -1,5 +1,6 @@
 
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+import useAuth from "@/Hooks/UseAuth";
 
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
 import UseParcels from "@/Hooks/UseParcels";
@@ -10,8 +11,9 @@ import { Link } from "react-router-dom";
 
 
 const MyParcel = () => {
+  const {user} = useAuth();
     const axiosSecure = UseAxiosSecure();
-    const [parcels,isLoading,refetch] = UseParcels();
+    const [parcels,isLoading,refetch] = UseParcels(user?.email);
 //    useParcels
     
    const handleCancel =async id =>{

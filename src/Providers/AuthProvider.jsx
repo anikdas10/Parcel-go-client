@@ -44,14 +44,12 @@ const AuthProvider = ({children}) => {
       if (currentUser) {
         const userinfo = { email: currentUser.email };
         const result = await axiosPublic.post("/jwt", userinfo);
-        console.log(result);
         if (result.data.token) {
           localStorage.setItem("access-token", result.data.token);
         }
       } else {
         localStorage.removeItem("access-token");
       }
-      console.log(currentUser);
       setLoading(false);
     });
     return () => {

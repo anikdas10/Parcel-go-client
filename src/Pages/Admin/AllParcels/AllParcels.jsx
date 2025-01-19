@@ -1,34 +1,71 @@
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+
 
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import ManageForm from "./ManageForm/ManageForm";
 
+import ManageForm from "./ManageForm/ManageForm";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
 
 const AllParcels = () => {
     
     const axiosSecure = UseAxiosSecure();
+    const [startDate,setStartDate] = useState("");
+    const [endDate,setEndDate] = useState("");
+    const [bookings,setBookings] = useState([]);
 
-    const {data:bookings,isLoading} = useQuery({
-        queryKey:["Parcels"],
-        queryFn:async()=>{
-            const {data} = await axiosSecure.get("/booking");
-            return data;
+    useEffect(()=>{
+        const facingData = async ()=>{
+             const { data } = await axiosSecure.get(
+               `/booking?startDate=${startDate}&endDate=${endDate}`
+             );
+             setBookings(data);
         }
-    })
-
+        facingData();
+    },[startDate,endDate])
+   
     //form submit data
-
-    if(isLoading)
-    {
-        return <LoadingSpinner/>
+    const handleFormSubmit = e =>{
+        e.preventDefault();
+        const form = e.target;
+        const startDate = form.startDate.value;
+        const endDate = form.endDate.value;
+        setStartDate(startDate);
+        setEndDate(endDate);
     }
     return (
       <div className="pt-10">
-        <h2 className="font-bold text-xl md:text-2xl lg:text-3xl">
+        <h2 className="font-bold text-xl md:text-2xl lg:text-3xl text-center mb-8">
           All Parcels
         </h2>
+        <form onSubmit={handleFormSubmit}>
+          <div className=" flex items-center justify-center gap-3">
+            <div className="space-y-2">
+              <label className="text-right text-lg">From</label>
+              <input
+                type="date"
+                name="startDate"
+                className="w-full px-2 lg:px-4 py-2 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-right text-lg">To</label>
+              <input
+                type="date"
+                placeholder="Requested Delivery Date"
+                name="endDate"
+                className="w-full  px-2 lg:px-4 py-2 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="">.</label>
+              <button className="bg-lime-500  px-2 lg:px-4 py-2 rounded-md cursor-pointer text-white hover:bg-lime-800  flex items-center gap-2 mx-auto">
+                Search <FaMagnifyingGlass />
+              </button>
+            </div>
+          </div>
+        </form>
         <div>
           <div className="container p-2 mx-auto rounded-md sm:p-4 dark:text-gray-800 dark:bg-gray-50 overflow-hidden ">
             <div className="overflow-x-auto">

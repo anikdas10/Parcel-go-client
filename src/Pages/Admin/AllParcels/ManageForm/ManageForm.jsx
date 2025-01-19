@@ -16,7 +16,6 @@ const ManageForm = ({parcel}) => {
         queryKey:["deliveryMen"],
         queryFn:async ()=>{
             const { data } = await axiosSecure.get("/user/DeliveryMen");
-            
             return data;
         }
     })
