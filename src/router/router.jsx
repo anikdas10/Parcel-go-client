@@ -12,6 +12,7 @@ import UpdateParcel from "@/Pages/UpdateParcel/UpdateParcel";
 import Profile from "@/Shared/Profile/Profile";
 import AllParcels from "@/Pages/Admin/AllParcels/AllParcels";
 import AllUser from "@/Pages/Admin/AllUser/AllUser";
+import AllDeliveryMen from "@/Pages/Admin/AllDeliveryMen/AllDeliveryMen";
 
 
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path:'allUsers',
         element:<AllUser/>
+      },
+      {
+        path:'allDeliveryMen',
+        element:<AllDeliveryMen/>
       }
     ],
   },

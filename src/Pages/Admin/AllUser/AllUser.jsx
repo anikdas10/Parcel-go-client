@@ -1,20 +1,16 @@
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+
 import NumberOfParcels from "./NumberOfParcels";
 import { Store } from "react-notifications-component";
+import UseAllUser from "@/Hooks/UseAllUser";
 
 
 const AllUser = () => {
     const axiosSecure = UseAxiosSecure();
    
-    const { data: users, isLoading,refetch } = useQuery({
-      queryKey: ["Users"],
-      queryFn: async () => {
-        const { data } = await axiosSecure.get("/user/User");
-        return data;
-      },
-    });
+    const [users,isLoading,refetch] = UseAllUser("User")
+
 
      
     // make deliverymen
@@ -73,8 +69,8 @@ const AllUser = () => {
         return <LoadingSpinner/>
      }
     return (
-      <div>
-        <h2>All User</h2>
+      <div className="pt-10">
+        <h2 className="font-bold text-lg md:text-xl lg:text-2xl">All User</h2>
         <div className="container p-2 mx-auto rounded-md sm:p-4 dark:text-gray-800 dark:bg-gray-50 overflow-hidden ">
           <div className="overflow-x-auto">
             <table className="min-w-full text-xs md:text-sm">

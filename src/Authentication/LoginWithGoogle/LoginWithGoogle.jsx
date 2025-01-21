@@ -3,7 +3,7 @@ import UseAxiosPublic from "@/Hooks/UseAxiosPublic";
 
 
 const LoginWithGoogle = () => {
-  const { user, handleGoogleLogin } = useAuth();
+  const {  handleGoogleLogin } = useAuth();
   const axiosPublic = UseAxiosPublic();
   const handleLogin = async ()=>{
     try{
@@ -15,7 +15,7 @@ const LoginWithGoogle = () => {
         image:user.photoURL,
         role:"User"
       }
-      const {data} = await axiosPublic.post("/users",userInfo)
+      const {data} = await axiosPublic.post("/users",userInfo);
       
     }
     catch(err){

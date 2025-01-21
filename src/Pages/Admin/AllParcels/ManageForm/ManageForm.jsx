@@ -31,7 +31,7 @@ const ManageForm = ({parcel}) => {
         };
 
         const { data } = await axiosSecure.patch(`/booking/${parcel?._id}`,updateInfo);
-        console.log(data);
+        
         if(data.modifiedCount>0)
         {
            Store.addNotification({

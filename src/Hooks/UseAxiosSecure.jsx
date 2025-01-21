@@ -14,7 +14,7 @@ const UseAxiosSecure = () => {
       config.headers.authorization = `bearer ${token}`;
       return config;
     },(error)=>{
-        console.log(error);
+       
         return Promise.reject(error);
     })
     axiosSecure.interceptors.response.use((response)=>{ 
