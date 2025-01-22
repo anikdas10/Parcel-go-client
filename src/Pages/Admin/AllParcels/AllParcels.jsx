@@ -22,7 +22,7 @@ const AllParcels = () => {
              setBookings(data);
         }
         facingData();
-    },[startDate,endDate])
+    },[startDate,endDate,bookings])
    
     //form submit data
     const handleFormSubmit = e =>{

@@ -68,7 +68,7 @@ const UpdateParcel = () => {
             console.log(err);
         }
     }
-    console.log(parcel);
+    
     return (
       <div>
         <h2>Update Parcel</h2>

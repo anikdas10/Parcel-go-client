@@ -4,45 +4,18 @@ import logo from "../../assets/images/logo.png"
 // icons
 import { MdAddBox, MdMenuOpen } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
-import { FaBox, FaChartLine, FaClipboardList, FaProductHunt, FaShippingFast, FaUsers } from "react-icons/fa";
+import { FaBox, FaChartLine, FaClipboardList,  FaShippingFast, FaUsers } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
-import { TbReportSearch } from "react-icons/tb";
-import { IoLogoBuffer, IoMdBookmarks } from "react-icons/io";
-import { CiSettings } from "react-icons/ci";
-import { MdOutlineDashboard } from "react-icons/md";
+
 
 import useAuth from "@/Hooks/UseAuth";
 
 import { NavLink } from "react-router-dom";
 
 import UseUser from "@/Hooks/UseUser";
+import { FaStar } from "react-icons/fa6";
 
-const menuItems = [
-  {
-    icons: <IoHomeOutline size={30} />,
-    label: "Home",
-  },
-  {
-    icons: <FaProductHunt size={30} />,
-    label: "Products",
-  },
-  {
-    icons: <MdOutlineDashboard size={30} />,
-    label: "Dashboard",
-  },
-  {
-    icons: <CiSettings size={30} />,
-    label: "Setting",
-  },
-  {
-    icons: <IoLogoBuffer size={30} />,
-    label: "Log",
-  },
-  {
-    icons: <TbReportSearch size={30} />,
-    label: "Report",
-  },
-];
+
 const userItems = [
   {
     icons: <MdAddBox size={30} />,
@@ -81,6 +54,18 @@ const adminItem = [
     icons: <FaChartLine size={30} />,
     label: "Statistics",
     link: "/dashboard/statistics",
+  },
+];
+const deliveryMenItem = [
+  {
+    icons: <FaClipboardList size={30} />,
+    label: "MyDeliveryList",
+    link: "/dashboard/myDeliveryList",
+  },
+  {
+    icons: <FaStar size={30} />,
+    label: "MyReviews",
+    link: "/dashboard/myReviews",
   },
 ];
 
@@ -176,6 +161,41 @@ const Sidebar = () => {
               </li>
             );
           })}
+          {/*  */}
+        {userData?.role === "DeliveryMen" &&
+          deliveryMenItem.map((item, index) => {
+            return (
+              <li
+                key={index}
+                className="px-3 py-2 my-2 hover:bg-blue-800 rounded- relative group"
+              >
+                <NavLink
+                  to={item.link}
+                  className="md duration-300 cursor-pointer flex gap-2 items-center"
+                >
+                  <div>{item.icons}</div>
+                  <p
+                    className={` ${
+                      !open && "w-0 translate-x-24"
+                    } duration-500 overflow-hidden`}
+                  >
+                    {item.label}
+                  </p>
+                  <p
+                    className={`${
+                      open && "hidden"
+                    } absolute left-32 shadow-md rounded-md
+                         w-0 p-0 text-black bg-white duration-100 overflow-hidden 
+                         group-hover:w-fit group-hover:p-2 group-hover:left-16
+                        `}
+                  >
+                    <span>{item.label}</span>
+                  </p>
+                </NavLink>
+              </li>
+            );
+          })}
+          
         <div className="border"></div>
         <li className="px-3 py-2 my-2 hover:bg-blue-800 rounded-md duration-300 cursor-pointer  relative group">
           <NavLink to="/" className="flex gap-2 items-center">
