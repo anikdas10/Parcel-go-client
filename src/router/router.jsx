@@ -14,6 +14,9 @@ import AllParcels from "@/Pages/Admin/AllParcels/AllParcels";
 import AllUser from "@/Pages/Admin/AllUser/AllUser";
 import AllDeliveryMen from "@/Pages/Admin/AllDeliveryMen/AllDeliveryMen";
 import MyDeliveryList from "@/Pages/DeliveryMen/DeliveryList/MyDeliveryList";
+import Review from "@/Pages/DeliveryMen/Reviews/Review";
+import DeliveryMenRoute from "./DeliveryMenRoute";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -53,11 +56,19 @@ const router = createBrowserRouter([
       },
       {
         path: "myParcel",
-        element: <MyParcel />,
+        element: (
+          <PrivateRoute>
+            <MyParcel />
+          </PrivateRoute>
+        ),
       },
       {
         path: ":id",
-        element: <UpdateParcel />,
+        element: (
+          <PrivateRoute>
+            <UpdateParcel />
+          </PrivateRoute>
+        ),
       },
       {
         path: "profile",
@@ -69,22 +80,47 @@ const router = createBrowserRouter([
       },
       // admin route
       {
-        path:"allParcels",
-       element:<AllParcels/>
+        path: "allParcels",
+        element: (
+          <AdminRoute>
+            <AllParcels />
+          </AdminRoute>
+        ),
       },
       {
-        path:'allUsers',
-        element:<AllUser/>
+        path: "allUsers",
+        element: (
+          <AdminRoute>
+            <AllUser />
+          </AdminRoute>
+        ),
       },
       {
-        path:'allDeliveryMen',
-        element:<AllDeliveryMen/>
+        path: "allDeliveryMen",
+        element: (
+          <AdminRoute>
+            <AllDeliveryMen />
+          </AdminRoute>
+        ),
       },
       // delivery Men
       {
-        path:"myDeliveryList",
-        element:<MyDeliveryList/>,
-      }
+        path: "myDeliveryList",
+        element: (
+          <DeliveryMenRoute>
+            <MyDeliveryList />
+          </DeliveryMenRoute>
+        ),
+      },
+      {
+        path: "myReviews",
+        element: (
+          <DeliveryMenRoute>
+            {" "}
+            <Review />
+          </DeliveryMenRoute>
+        ),
+      },
     ],
   },
 ]);

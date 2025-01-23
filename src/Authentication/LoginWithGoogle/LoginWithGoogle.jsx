@@ -1,14 +1,18 @@
 import useAuth from "@/Hooks/useAuth";
 import UseAxiosPublic from "@/Hooks/UseAxiosPublic";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const LoginWithGoogle = () => {
   const {  handleGoogleLogin } = useAuth();
   const axiosPublic = UseAxiosPublic();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = async ()=>{
     try{
       const {user} = await handleGoogleLogin();
-      
+        navigate(from);
       const userInfo = {
         name:user.displayName,
         email:user.email,

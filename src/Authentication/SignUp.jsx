@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "./LoginWithGoogle/LoginWithGoogle";
 import { imageUpload } from "@/components/api/utilies";
 import useAuth from "@/Hooks/UseAuth";
@@ -9,6 +9,9 @@ import { Store } from "react-notifications-component";
 const SignUp = () => {
   const {createUser,updateUser,setUser} = useAuth();
   const axiosPublic = UseAxiosPublic();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const form = e.target;
@@ -30,7 +33,8 @@ const SignUp = () => {
     }
     // create user
     try{
-      const {user} = await createUser(email,password)
+      const {user} = await createUser(email,password);
+      navigate(from)
       // update user
       await updateUser(name, photoUrl);
       setUser({ ...user, displayName: name ,photoURL:photoUrl});

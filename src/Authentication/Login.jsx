@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "./LoginWithGoogle/LoginWithGoogle";
 import useAuth from "@/Hooks/UseAuth";
 import { Store } from "react-notifications-component";
@@ -6,6 +6,9 @@ import { Store } from "react-notifications-component";
 
 const Login = () => {
   const {signIn} = useAuth();
+ const navigate = useNavigate();
+ const location = useLocation();
+ const from = location.state?.from?.pathname || "/";
   const handleSubmit = async e =>{
     e.preventDefault();
     const form = e.target;
@@ -14,6 +17,7 @@ const Login = () => {
 
     try{
       const result = await signIn(email,password);
+      navigate(from,{replace:true})
       Store.addNotification({
         message: "Login SuccessFull!",
         type: "success",
@@ -82,7 +86,7 @@ const Login = () => {
           <div>
             <p className="text-xs md:text-sm  lg:text-lg text-center sm:px-6 dark:text-gray-600">
               Don't have an account?
-              <Link
+              <Link state={{from:location}}
                 to="/signUp"
                 rel="noopener noreferrer"
                 className="underline dark:text-gray-800 "
