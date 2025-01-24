@@ -1,6 +1,8 @@
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import useAuth from "@/Hooks/UseAuth";
 
 import UseAxiosSecure from "@/Hooks/UseAxiosSecure";
+import UseBooking from "@/Hooks/UseBooking";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Store } from "react-notifications-component";
@@ -8,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 
 const UpdateParcel = () => {
-    const [parcel,setParcel] = useState([])
+    // const [parcel,setParcel] = useState([])
     const {id} = useParams();
     const {user} = useAuth();
      const [price, setPrice] = useState(0);
@@ -16,13 +18,14 @@ const UpdateParcel = () => {
     const {handleSubmit,register,
         formState:errors
     } = useForm();
-    console.log(id);
-    useEffect(()=>{
-        axiosSecure.get(`/bookings/${id}`)
-        .then(res=>{
-            setParcel(res.data)
-        })
-    },[])
+   
+    // useEffect(()=>{
+    //     axiosSecure.get(`/bookings/${id}`)
+    //     .then(res=>{
+    //         setParcel(res.data)
+    //     })
+    // },[])
+    const [parcel,isLoading] = UseBooking(id);
 
      const handleParcelWeight = (value) => {
        const parcelWeight = parseFloat(value) || 0;
@@ -69,6 +72,10 @@ const UpdateParcel = () => {
         }
     }
     
+    if(isLoading)
+    {
+      return <LoadingSpinner/>
+    }
     return (
       <div>
         <h2>Update Parcel</h2>

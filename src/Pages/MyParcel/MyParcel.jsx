@@ -267,12 +267,14 @@ const MyParcel = () => {
                         </Dialog>
                       </td>
                       <td className="p-2">
-                        <button
-                          disabled={parcel.status === "canceled"}
-                          className="px-2 py-1 bg-green-500 rounded-md text-white "
-                        >
-                          Pay
-                        </button>
+                        <Link to={`/dashboard/checkOut/${parcel._id}`}>
+                          <button
+                            disabled={parcel?.paymentStatus === "paid" || parcel.status==="canceled"}
+                            className="px-2 py-1 bg-green-500 rounded-md text-white "
+                          >
+                           {parcel?.paymentStatus==="paid"?"Paid":"Pay"}
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

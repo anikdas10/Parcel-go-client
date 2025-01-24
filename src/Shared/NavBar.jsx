@@ -3,11 +3,14 @@ import logo from "./../assets/images/logo.png"
 import { IoMdNotificationsOutline } from "react-icons/io";
 import useAuth from "@/Hooks/UseAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import UseUser from "@/Hooks/UseUser";
 
 
 const NavBar = () => {
   const {user,logOut} = useAuth();
-  console.log(user?.displayName);
+  // console.log(user?.displayName);
+  const [userData] = UseUser();
+  // console.log(userData?.role);
   const handleLogout = async()=>{
     const result = await logOut();
   }
@@ -47,10 +50,26 @@ const NavBar = () => {
                       </DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link className="font-semibold" to="/dashboard">Dashboard</Link>
+                        <Link
+                          className="font-semibold"
+                          to={
+                            userData?.role === "Admin"
+                              ? "/dashboard/statistics"
+                              : userData?.role === "User"
+                              ? "/dashboard/profile"
+                              : "dashboard/myDeliveryList"
+                          }
+                        >
+                          Dashboard
+                        </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <button onClick={handleLogout} className="font-semibold" >Logout</button>
+                        <button
+                          onClick={handleLogout}
+                          className="font-semibold"
+                        >
+                          Logout
+                        </button>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

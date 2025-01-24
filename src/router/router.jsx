@@ -4,7 +4,7 @@ import SignUp from "@/Authentication/SignUp";
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
 import Home from "@/Pages/Home/Home";
 import Dashboard from "@/Layouts/Dashboard/Dashboard"
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import BookParcel from "@/Pages/BookParcel/BookParcel";
 import MyParcel from "@/Pages/MyParcel/MyParcel";
@@ -17,8 +17,12 @@ import MyDeliveryList from "@/Pages/DeliveryMen/DeliveryList/MyDeliveryList";
 import Review from "@/Pages/DeliveryMen/Reviews/Review";
 import DeliveryMenRoute from "./DeliveryMenRoute";
 import AdminRoute from "./AdminRoute";
+import Checkout from "@/Pages/Payments/Checkout";
+import Success from "@/Pages/Payments/Success";
+import Statistics from "@/Pages/Admin/Statistics/Statistics";
 
 
+const user = "admin"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +50,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      
       {
         path: "bookParcel",
         element: (
@@ -78,6 +83,18 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "checkOut/:id",
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path:"success",
+        element:<Success/>
+      },
       // admin route
       {
         path: "allParcels",
@@ -103,6 +120,10 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path:"statistics",
+        element:<Statistics/>
+      },
       // delivery Men
       {
         path: "myDeliveryList",
@@ -116,7 +137,6 @@ const router = createBrowserRouter([
         path: "myReviews",
         element: (
           <DeliveryMenRoute>
-            {" "}
             <Review />
           </DeliveryMenRoute>
         ),
