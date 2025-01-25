@@ -22,7 +22,7 @@ import Success from "@/Pages/Payments/Success";
 import Statistics from "@/Pages/Admin/Statistics/Statistics";
 
 
-const user = "admin"
+// const user = "admin"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -122,7 +122,7 @@ const router = createBrowserRouter([
       },
       {
         path:"statistics",
-        element:<Statistics/>
+        element:<AdminRoute/>
       },
       // delivery Men
       {

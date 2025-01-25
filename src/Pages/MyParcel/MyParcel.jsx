@@ -68,7 +68,7 @@ const MyParcel = () => {
     };
 
     try{
-      const {data} = await axiosSecure.post("/reviews")
+      const {data} = await axiosSecure.post("/reviews",reviewContent)
       if(data.insertedId)
       {
           Store.addNotification({
@@ -95,7 +95,7 @@ const MyParcel = () => {
     return <LoadingSpinner/>
    }
 
-   console.log(userData);
+  //  console.log(userData);
     return (
       <div className="pt-10 mx-auto">
         <h2 className="font-bold text-xl md:text-2xl lg:text-3xl text-center">
@@ -246,7 +246,7 @@ const MyParcel = () => {
                                     htmlFor="name"
                                     className="text-right text-lg"
                                   >
-                                    Name
+                                    DeliveryMen Id
                                   </label>
                                   <input
                                     id="deliveryMenId"
