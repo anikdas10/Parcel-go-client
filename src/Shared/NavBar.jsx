@@ -15,7 +15,7 @@ const NavBar = () => {
     const result = await logOut();
   }
     return (
-      <div className="fixed w-full top-0 z-50 border-b py-2 shadow-md">
+      <div className="fixed w-full top-0 z-50 border-b py-2 shadow-md backdrop-blur-3xl">
         <nav className="w-11/12 mx-auto flex items-center justify-between">
           {/* logo */}
           <div className="flex items-center">
