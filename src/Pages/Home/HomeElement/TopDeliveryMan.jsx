@@ -24,7 +24,10 @@ const TopDeliveryMan = () => {
     
     return (
       <div className="pt-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-center font-bold text-xl md:text-2xl lg:text-3xl">
+          Top DeliveryMan
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {topDeliveryMans.map((deliveryman) => (
             <div
               key={deliveryman._id}

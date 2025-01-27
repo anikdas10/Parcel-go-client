@@ -69,7 +69,7 @@ const BookParcel = () => {
         console.log(err);
      }
     };
-    console.log(new Date().toISOString().split("T")[0]);
+   
     return (
       <div className="pt-10">
         <h2 className="font-bold text-xl md:text-2xl lg:text-3xl text-center mb-5">

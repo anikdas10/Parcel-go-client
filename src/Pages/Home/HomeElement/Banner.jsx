@@ -18,10 +18,10 @@ const Banner = () => {
             <div className="flex items-center justify-center">
               <input
                 type="text"
-                className="px-5 py-2 md:py-4 text-black capitalize transition-colors duration-300 transform bg-gray-200 rounded-md rounded-r-none lg:w-auto hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                className="px-5 py-2 md:py-3 text-black capitalize transition-colors duration-300 transform bg-gray-200 rounded-md rounded-r-none lg:w-auto hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                 placeholder="Search "
               />
-             <button className="py-2 md:py-4 bg-gray-600 px-4 md:px-5 text-white rounded-md rounded-l-none font-bold">Search</button>
+             <button className="py-2 md:py-3 bg-gray-600 px-4 md:px-5 text-white rounded-md rounded-l-none font-bold">Search</button>
             </div>
           </div>
         </div>

@@ -50,7 +50,6 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      
       {
         path: "bookParcel",
         element: (
@@ -92,8 +91,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"success",
-        element:<Success/>
+        path: "success",
+        element: <Success />,
       },
       // admin route
       {
@@ -121,8 +120,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"statistics",
-        element:<AdminRoute/>
+        path: "statistics",
+        element: (
+          <AdminRoute>
+            <Statistics />
+          </AdminRoute>
+        ),
       },
       // delivery Men
       {

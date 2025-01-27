@@ -4,15 +4,20 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import useAuth from "@/Hooks/UseAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import UseUser from "@/Hooks/UseUser";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 
 const NavBar = () => {
   const {user,logOut} = useAuth();
   // console.log(user?.displayName);
-  const [userData] = UseUser();
+  const [userData,isLoading] = UseUser();
   // console.log(userData?.role);
   const handleLogout = async()=>{
     const result = await logOut();
+  }
+  if(isLoading)
+  {
+    return <LoadingSpinner/>
   }
     return (
       <div className="fixed w-full top-0 z-50 border-b py-2 shadow-md backdrop-blur-3xl">
