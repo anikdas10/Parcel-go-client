@@ -1,18 +1,25 @@
-import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
-import UseParcels from '@/Hooks/UseParcels';
+
+import UseAxiosPublic from '@/Hooks/UseAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
-const NumberOfParcels = ({email}) => {
-
-     const [parcels,isLoading] = UseParcels(email);
-
-    if(isLoading)
+const NumberOfParcels = ({id}) => {
+    const axiosPublic = UseAxiosPublic();
+   console.log(id);
+   const {data:delivered,isLoading}= useQuery({
+    queryKey:[id],
+    queryFn:async()=>{
+        const {data} = await axiosPublic.get(`/delivered/${id}`)
+       return data
+    }
+   })
+   if(isLoading)
     {
         return "."
     }
     return (
         <div>
-            {parcels.length}
+           {delivered.result}
 
         </div>
     );

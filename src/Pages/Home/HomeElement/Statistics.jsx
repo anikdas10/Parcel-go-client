@@ -61,9 +61,9 @@ const Statistics = () => {
               </p>
             </div>
           </div>
-          <div className="bg-white shadow-lg rounded-2xl p-6 flex items-center flex-col gap-4 border">
+          <div className="bg-white shadow-lg rounded-2xl p-6 flex items-center justify-center flex-col gap-4 border">
             <FaTruck className="text-4xl text-green-500" />
-            <div>
+            <div className="text-center">
               <h2 className="text-xl font-bold">Parcels Delivered</h2>
               <p className="text-3xl font-semibold text-center">
                 <CountUp end={totalDelivered} duration={5} /> +
@@ -72,7 +72,7 @@ const Statistics = () => {
           </div>
           <div className="bg-white shadow-lg rounded-2xl p-6 flex items-center flex-col gap-4 border">
             <FaUsers className="text-4xl text-purple-500" />
-            <div>
+            <div className="text-center">
               <h2 className="text-xl font-bold">Registered Users</h2>
               <p className="text-3xl font-semibold text-center">
                 <CountUp end={totalUsers} duration={5} /> +

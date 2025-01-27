@@ -38,15 +38,15 @@ const AllDeliveryMen = () => {
                       <span>{user.name}</span>
                     </td>
                     <td className="p-2 text-center">
-                      <span></span>
+                      <span>014543463454</span>
                     </td>
                     <td className="p-2">
                       <span>
-                        <NumberOfParcels email={user?.email} />
+                        <NumberOfParcels id={user?._id} />
                       </span>
                     </td>
                     <td className="p-2">
-                      <span>{user?.deliveryDate}</span>
+                      <span>tgt</span>
                     </td>
                     <td className="p-2 text-center">
                       {/* <button

@@ -10,8 +10,7 @@ const SignUp = () => {
   const {createUser,updateUser,setUser} = useAuth();
   const axiosPublic = UseAxiosPublic();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+ 
   const handleSubmit =async (e)=>{
     e.preventDefault();
     const form = e.target;
@@ -34,7 +33,7 @@ const SignUp = () => {
     // create user
     try{
       const {user} = await createUser(email,password);
-      navigate(from)
+      navigate("/")
       // update user
       await updateUser(name, photoUrl);
       setUser({ ...user, displayName: name ,photoURL:photoUrl});
@@ -55,7 +54,6 @@ const SignUp = () => {
       });
       // save the data (mongodb)
      const {data} =  await axiosPublic.post("/users",userInfo)
-     console.log(data);
     }
     catch(err){
       console.log(err);
