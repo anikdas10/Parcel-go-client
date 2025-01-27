@@ -81,7 +81,7 @@ const MyDeliveryList = () => {
     if(isLoading){
         return <LoadingSpinner/>
     }
-    console.log(bookings);
+  
     return (
       <div className="pt-10 border">
         <h2 className="font-bold text-lg md:text-xl lg:text-2xl">

@@ -20,6 +20,7 @@ import AdminRoute from "./AdminRoute";
 import Checkout from "@/Pages/Payments/Checkout";
 import Success from "@/Pages/Payments/Success";
 import Statistics from "@/Pages/Admin/Statistics/Statistics";
+import Errors from "@/Pages/Errors/Errors";
 
 
 // const user = "admin"
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<Errors/>,
     children: [
       {
         path: "/",

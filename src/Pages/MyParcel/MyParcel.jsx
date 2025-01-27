@@ -65,6 +65,7 @@ const MyParcel = () => {
       rating,
       review,
       deliveryMenId,
+      reviewDate: new Date().toLocaleDateString()
     };
 
     try{
