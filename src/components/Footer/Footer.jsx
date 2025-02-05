@@ -27,10 +27,10 @@ const Footer = () => {
             <br /> Miurpur-1, Dhaka-1216
           </h4>
           <h4 className="text-white font-semibold text-lg">
-            Phone:+8801719999999
+            Phone: +88-01719999999
           </h4>
           <h4 className="text-white font-semibold text-lg">
-            Email:allsports@gmail.com
+            Email: parcel.go@gmail.com
           </h4>
         </div>
         <div>

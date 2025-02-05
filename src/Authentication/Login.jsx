@@ -2,9 +2,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "./LoginWithGoogle/LoginWithGoogle";
 import useAuth from "@/Hooks/UseAuth";
 import { Store } from "react-notifications-component";
+import { useState } from "react";
 
 
 const Login = () => {
+  const [error,setError] = useState("");
   const {signIn} = useAuth();
  const navigate = useNavigate();
  const location = useLocation();
@@ -29,9 +31,10 @@ const Login = () => {
           onScreen: true,
         },
       });
+      setError("");
     }
     catch(err){
-      console.log(err);
+      setError("Invalid email or password!");
     }
 
   }
@@ -66,6 +69,11 @@ const Login = () => {
                 name="password"
               />
             </div>
+            {
+              error && <div>
+                <p className="text-red-600">{error}</p>
+              </div>
+            }
 
             <div className="">
               <button className="w-full border px-8 py-3 font-semibold rounded-md  mt-5 dark:bg-violet-600 dark:text-gray-50">

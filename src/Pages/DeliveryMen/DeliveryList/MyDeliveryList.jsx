@@ -83,7 +83,7 @@ const MyDeliveryList = () => {
     }
   
     return (
-      <div className="pt-10 border">
+      <div className="pt-10">
         <h2 className="font-bold text-lg md:text-xl lg:text-2xl">
           My Delivery List
         </h2>

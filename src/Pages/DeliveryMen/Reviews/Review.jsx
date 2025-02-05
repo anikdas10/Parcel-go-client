@@ -56,7 +56,7 @@ const Review = () => {
             {/* card end */}
           </div>
         ) : (
-          <p>No reviews yet.</p>
+          <p className="text-center pt-20">No reviews yet.</p>
         )}
       </div>
     );

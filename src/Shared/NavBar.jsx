@@ -15,10 +15,7 @@ const NavBar = () => {
   const handleLogout = async()=>{
     const result = await logOut();
   }
-  if(isLoading)
-  {
-    return <LoadingSpinner/>
-  }
+ 
     return (
       <div className="fixed w-full top-0 z-50 border-b py-2 shadow-md backdrop-blur-3xl">
         <nav className="w-11/12 mx-auto flex items-center justify-between">
@@ -62,7 +59,7 @@ const NavBar = () => {
                               ? "/dashboard/statistics"
                               : userData?.role === "User"
                               ? "/dashboard/profile"
-                              : "dashboard/myDeliveryList"
+                              : "/dashboard/myDeliveryList"
                           }
                         >
                           Dashboard
