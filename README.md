@@ -55,7 +55,7 @@ Follow these steps to set up **Parcel.Go** on your local machine:
 
 1. **Clone the Repository**  
    ```bash
-   git clone 
+   git clone https://github.com/anikdas10/Parcel-go-client.git
    cd parcel-go
    ```
 
