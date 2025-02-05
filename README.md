@@ -55,7 +55,7 @@ Follow these steps to set up **Parcel.Go** on your local machine:
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/Parcel-go-client/parcel-go.git
+   git clone 
    cd parcel-go
    ```
 
@@ -75,9 +75,5 @@ Follow these steps to set up **Parcel.Go** on your local machine:
 ---
 
 ## 🔗 Live Project & Resources
-- 🌍 **Live Demo:** [Provide Link]  
-- 📚 **Documentation:** [Provide Link]  
-- 🛠️ **Vite Docs:** [https://vitejs.dev/](https://vitejs.dev/)  
-- 🏗️ **React Docs:** [https://react.dev/](https://react.dev/)  
-
+- 🌍 **Live Demo:** https://parcel-go-bd.web.app
 ---
